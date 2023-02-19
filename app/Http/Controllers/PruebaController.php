@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Http\JsonResponse;
 
 class PruebaController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth:sanctum', ['except' => ['index','show']]);
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index()
     {
         return response()->json(['mensaje' => 'Accediendo a index']);
     }
@@ -18,7 +23,7 @@ class PruebaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): Response
+    public function store(Request $request)
     {
         return response()->json(['mensaje' => 'Insertando'], 201);
     }
@@ -26,7 +31,7 @@ class PruebaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id): Response
+    public function show(string $id)
     {
         return response()->json(['mensaje' => 'Ficha de ' . $id]);
     }
@@ -34,7 +39,7 @@ class PruebaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): Response
+    public function update(Request $request, string $id)
     {
         return response()->json(['mensaje' => 'Actualizando elemento']);
     }
@@ -42,7 +47,7 @@ class PruebaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): Response
+    public function destroy(string $id)
     {
         return response()->json(['mensaje' => 'Borrando elemento']);
     }
